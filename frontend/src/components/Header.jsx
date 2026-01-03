@@ -8,47 +8,49 @@ function Header({ account, isConnected, onConnect, onDisconnect }) {
   }
 
   return (
-    <header className="container mx-auto px-4 py-6">
-      <nav className="flex items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex items-center space-x-2"
-        >
-          <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
-            <span className="text-xl font-bold">F</span>
-          </div>
-          <span className="text-2xl font-bold gradient-text">Fusions</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
-          {isConnected ? (
-            <div className="flex items-center space-x-4">
-              <div className="glass-effect px-4 py-2 rounded-lg flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm font-mono">{formatAddress(account)}</span>
-              </div>
-              <button
-                onClick={onDisconnect}
-                className="glass-effect px-4 py-2 rounded-lg hover:bg-white/10 transition-colors flex items-center space-x-2"
-              >
-                <LogOut size={18} />
-                <span>断开连接</span>
-              </button>
+    <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center space-x-3"
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-lg">F</span>
             </div>
-          ) : (
-            <button
-              onClick={onConnect}
-              className="glass-effect px-6 py-3 rounded-lg hover:bg-white/10 transition-all flex items-center space-x-2 glow-border hover:shadow-[0_0_30px_rgba(14,165,233,0.5)]"
-            >
-              <Wallet size={20} />
-              <span>连接钱包</span>
-            </button>
-          )}
-        </motion.div>
+            <span className="text-2xl font-bold text-gray-900">Fusions</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            {isConnected ? (
+              <div className="flex items-center space-x-4">
+                <div className="bg-gray-100 px-4 py-2 rounded-lg flex items-center space-x-2 border border-gray-200">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-mono text-gray-700">{formatAddress(account)}</span>
+                </div>
+                <button
+                  onClick={onDisconnect}
+                  className="bg-white border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-2 text-gray-700"
+                >
+                  <LogOut size={18} />
+                  <span>Disconnect</span>
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onConnect}
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-3 rounded-lg transition-all flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                <Wallet size={20} />
+                <span>Connect Wallet</span>
+              </button>
+            )}
+          </motion.div>
+        </div>
       </nav>
     </header>
   )
